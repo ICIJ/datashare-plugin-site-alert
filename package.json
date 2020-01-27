@@ -1,0 +1,21 @@
+{
+  "name": "datashare-plugin-demo-alert",
+  "version": "1.0.0",
+  "description": "A Datashare Plugin to display an alert for demo instances.",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vue build"
+  },
+  "author": "pirhoo",
+  "license": "ISC",
+  "vue": {
+     "filenameHashing": false
+  },
+  "main": "dist/js/app.js",
+  "files": [
+    "dist/{css,js}/*.{css,js,map}"
+  ]
+}
