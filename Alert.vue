@@ -23,18 +23,18 @@
     },
     computed: {
       message () {
-        const defaultValue = 'Hello <strong>{username}</strong>, welcome to Datashare! Please set the <code>app.alert.message</code> configuration variable to change this message.'
-        const message = this.$config.get('app.alert.message', defaultValue)
+        const defaultValue = 'Hello <strong>{username}</strong>, welcome to Datashare! Please set the <code>appAlertMessage</code> configuration variable to change this message.'
+        const message = this.$config.get('appAlertMessage', defaultValue)
         // Returns the message and inject the username
         return message.split('{username}').join(this.username)
       },
       variant () {
         const defaultValue = 'info'
-        return this.castConfigToVariant('app.alert.variant', defaultValue)
+        return this.castConfigToVariant('appAlertVariant', defaultValue)
       },
       color () {
         const defaultValue = 'dark'
-        return this.castConfigToVariant('app.alert.color', defaultValue)
+        return this.castConfigToVariant('appAlertColor', defaultValue)
       },
       classList () {
         return [`bg-${this.variant}`, `text-${this.color}`]
