@@ -1,20 +1,19 @@
 {
-  "name": "datashare-plugin-demo-alert",
+  "name": "datashare-plugin-site-alert",
   "version": "1.0.0",
-  "description": "A Datashare Plugin to display an alert for demo instances.",
-  "main": "main.js",
+  "description": "A Datashare Plugin to display an alert.",
+  "main": "dist/index.umd.min.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vue build"
+    "build": "vue build --target lib --name index"
   },
   "author": "pirhoo",
   "license": "ISC",
   "vue": {
      "filenameHashing": false
   },
-  "main": "dist/js/app.js",
   "files": [
     "dist/{css,js}/*.{css,js,map}"
   ]
