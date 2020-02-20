@@ -1,6 +1,6 @@
 {
   "name": "@icij/datashare-plugin-site-alert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Datashare Plugin to display an alert.",
   "main": "dist/index.umd.min.js",
   "dependencies": {},
@@ -13,7 +13,7 @@
   "author": "pirhoo",
   "license": "ISC",
   "vue": {
-     "filenameHashing": false
+    "filenameHashing": false
   },
   "files": [
     "dist/{css,js}/*.{css,js,map}"
