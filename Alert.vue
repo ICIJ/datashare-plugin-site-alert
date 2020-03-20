@@ -8,7 +8,7 @@
       }
     },
     async mounted () {
-      this.username = await window.datashare.auth.getUsername()
+      this.username = await this.$core.auth.getUsername()
     },
     methods: {
       castVariant (color, defaultValue = 'dark') {
