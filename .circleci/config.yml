@@ -37,8 +37,7 @@ jobs:
       - run:
           name: Run test
           command: yarn run test
-          pytest
-
+          
   test-5.9.17:
     <<: *test-master
     - image: circleci/node:jessie-browsers
