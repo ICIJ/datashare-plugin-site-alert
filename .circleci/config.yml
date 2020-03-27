@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:jessie-browsers
+        environment:
+          - "DATASHARE_VERSION=5.9.19"
+    steps:
+      - checkout
+      - run:
+          name: Build Datashare package name
+          command: export DATASHARE_PACKAGE=datashare-dist_$DATASHARE_VERSION_all.deb
+      - run:
+          name: Download Datashare for Debian
+          command: curl -O https://github.com/ICIJ/datashare-installer/releases/download/$DATASHARE_VERSION/$DATASHARE_PACKAGE
+      - run:
+          name: Install Datashare
+          command: dpkg -i $DATASHARE_PACKAGE
+      - run:
+          name: Run Datashare in background
+          command: mkdir -p tmp && yarn run test:datashare &
+      - run:
+          name: Install node packages
+          command: yarn
+      - run:
+          name: Run test
+          command: yarn run test
