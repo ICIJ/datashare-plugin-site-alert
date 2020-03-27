@@ -38,12 +38,14 @@ jobs:
           name: Run test
           command: yarn run test
   test-5.9.17:
-    <<: *test-master
-    - image: circleci/node:jessie-browsers
-      environment:
-        - "DATASHARE_VERSION=5.9.17"
+    << : *test-master
+    docker:
+      - image: circleci/node:jessie-browsers
+        environment:
+          - "DATASHARE_VERSION=5.9.17"
   test-5.9.16:
-    <<: *test-master
-    - image: circleci/node:jessie-browsers
-      environment:
-        - "DATASHARE_VERSION=5.9.16"
+    << : *test-master
+    docker:
+      - image: circleci/node:jessie-browsers
+        environment:
+          - "DATASHARE_VERSION=5.9.16"
