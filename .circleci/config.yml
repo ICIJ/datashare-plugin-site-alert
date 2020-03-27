@@ -1,6 +1,13 @@
 version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-5.9.19
+      - test-5.9.17
+      - test-5.9.16
 jobs:
-  build:
+  test-5.9.19: &test-master
     docker:
       - image: circleci/node:jessie-browsers
         environment:
@@ -30,3 +37,16 @@ jobs:
       - run:
           name: Run test
           command: yarn run test
+          pytest
+
+  test-5.9.17:
+    <<: *test-master
+    - image: circleci/node:jessie-browsers
+      environment:
+        - "DATASHARE_VERSION=5.9.17"
+
+  test-5.9.16:
+    <<: *test-master
+    - image: circleci/node:jessie-browsers
+      environment:
+        - "DATASHARE_VERSION=5.9.16"
