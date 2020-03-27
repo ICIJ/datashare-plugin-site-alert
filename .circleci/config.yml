@@ -12,7 +12,7 @@ jobs:
           command: echo 'export DATASHARE_PACKAGE="datashare-dist_${DATASHARE_VERSION}_all.deb"'  >> $BASH_ENV
       - run:
           name: Download Datashare for Debian
-          command: curl -O https://github.com/ICIJ/datashare-installer/releases/download/$DATASHARE_VERSION/$DATASHARE_PACKAGE
+          command: curl -O "https://github.com/ICIJ/datashare-installer/releases/download/${DATASHARE_VERSION}/${DATASHARE_PACKAGE}"
       - run:
           name: Install Datashare
           command: sudo dpkg -i $DATASHARE_PACKAGE
