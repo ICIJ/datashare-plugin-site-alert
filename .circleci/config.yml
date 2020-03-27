@@ -18,10 +18,15 @@ jobs:
           command: sudo dpkg -i $DATASHARE_PACKAGE
       - run:
           name: Run Datashare in background
-          command: mkdir -p tmp && yarn run test:datashare &
+          command: mkdir -p tmp && yarn run test:datashare
+          background: true
       - run:
           name: Install node packages
           command: yarn
+      - run:
+          name: Wait for Datashare to be up
+          shell: /bin/sh
+          command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8008
       - run:
           name: Run test
           command: yarn run test
