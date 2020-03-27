@@ -44,5 +44,5 @@
 </script>
 
 <template>
-  <div class="text-center p-2 width-100" :class="classList" v-html="message"></div>
+  <div class="site-alert text-center p-2 width-100" :class="classList" v-html="message"></div>
 </template>
