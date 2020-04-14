@@ -3,15 +3,16 @@ workflows:
   version: 2
   test:
     jobs:
+      - test-6.0.0
       - test-5.9.19
       - test-5.9.17
       - test-5.9.16
 jobs:
-  test-5.9.19: &test-master
+  test-6.0.0: &test-master
     docker:
       - image: circleci/node:jessie-browsers
         environment:
-          - "DATASHARE_VERSION=5.9.19"
+          - "DATASHARE_VERSION=6.0.0"
     steps:
       - checkout
       - run:
@@ -36,6 +37,13 @@ jobs:
           command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8008
       - run:
           name: Run test
+          command: yarn run test
+  test-5.9.19:
+    << : *test-master
+    docker:
+      - image: circleci/node:jessie-browsers
+        environment:
+          - "DATASHARE_VERSION=5.9.19"
           command: yarn run test
   test-5.9.17:
     << : *test-master
