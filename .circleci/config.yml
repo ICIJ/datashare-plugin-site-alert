@@ -41,18 +41,18 @@ jobs:
   test-5.9.19:
     << : *test-master
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:buster-browsers
         environment:
           - "DATASHARE_VERSION=5.9.19"
   test-5.9.17:
     << : *test-master
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:buster-browsers
         environment:
           - "DATASHARE_VERSION=5.9.17"
   test-5.9.16:
     << : *test-master
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:buster-browsers
         environment:
           - "DATASHARE_VERSION=5.9.16"
