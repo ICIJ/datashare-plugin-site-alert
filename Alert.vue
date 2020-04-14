@@ -29,7 +29,7 @@
         return message.split('{username}').join(this.username)
       },
       variant () {
-        const defaultValue = 'info'
+        const defaultValue = 'warning'
         return this.castConfigToVariant('appAlertVariant', defaultValue)
       },
       color () {
