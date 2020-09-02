@@ -1,6 +1,6 @@
 {
   "name": "@icij/datashare-plugin-site-alert",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A Datashare plugin to display an alert.",
   "main": "dist/index.umd.min.js",
   "dependencies": {},
