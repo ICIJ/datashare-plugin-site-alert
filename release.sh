@@ -38,4 +38,12 @@ curl -m 100 -s -X POST -H "Accept: application/vnd.github.v3+json" -H "Authoriza
 # Delete generated asset
 rm -Rf "$GITHUB_REPO-$RELEASE_VERSION.tgz"
 
+# Commit the updated package.json
+git add package.json
+git commit -m "[release] version $RELEASE_VERSION"
+git push origin master
+
+# Publish on npm
+npm publish
+
 printf "\n\nDONE"
