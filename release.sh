@@ -11,14 +11,12 @@ RELEASE_VERSION=$2
 GITHUB_API_TOKEN=$3
 
 # Generate the assets
-mkdir tmp
-cp package.json tmp
-cp -R dist tmp
-cd tmp
-tar -zcvf "../$GITHUB_REPO-$RELEASE_VERSION.tgz" .
-zip -r "../$GITHUB_REPO-$RELEASE_VERSION.zip" .
-cd ..
-rm -Rf tmp
+mkdir -p "$GITHUB_REPO-$RELEASE_VERSION"
+cp package.json "$GITHUB_REPO-$RELEASE_VERSION"
+cp -R dist "$GITHUB_REPO-$RELEASE_VERSION"
+tar -zcvf "$GITHUB_REPO-$RELEASE_VERSION.tgz" "$GITHUB_REPO-$RELEASE_VERSION"
+zip -r "$GITHUB_REPO-$RELEASE_VERSION.zip" "$GITHUB_REPO-$RELEASE_VERSION"
+rm -Rf "$GITHUB_REPO-$RELEASE_VERSION"
 
 # Create the Github release
 UPLOAD_URL=$(curl -s -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_API_TOKEN" "https://api.github.com/repos/ICIJ/$GITHUB_REPO/releases" -d "{\"tag_name\": \"$RELEASE_VERSION\", \"target_commitish\": \"master\", \"name\": \"$RELEASE_VERSION\", \"body\": \"Create release $RELEASE_VERSION\", \"draft\": false, \"prerelease\": false}"  | jq '.upload_url')
