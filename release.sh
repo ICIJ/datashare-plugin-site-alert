@@ -15,7 +15,6 @@ mkdir -p "$GITHUB_REPO-$RELEASE_VERSION"
 cp package.json "$GITHUB_REPO-$RELEASE_VERSION"
 cp -R dist "$GITHUB_REPO-$RELEASE_VERSION"
 tar -zcvf "$GITHUB_REPO-$RELEASE_VERSION.tgz" "$GITHUB_REPO-$RELEASE_VERSION"
-zip -r "$GITHUB_REPO-$RELEASE_VERSION.zip" "$GITHUB_REPO-$RELEASE_VERSION"
 rm -Rf "$GITHUB_REPO-$RELEASE_VERSION"
 
 # Create the Github release
@@ -30,8 +29,7 @@ fi
 # Upload the assets to this release
 UPLOAD_URL=$(echo "$UPLOAD_URL" | sed -r 's/"//g' | sed -r 's/\{\?name,label\}//g')
 curl -m 100 -s -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_API_TOKEN" -H "Content-Type:application/gzip" --data-binary @"./$GITHUB_REPO-$RELEASE_VERSION.tgz" "$UPLOAD_URL?name=$GITHUB_REPO-$RELEASE_VERSION.tgz&label=$GITHUB_REPO-$RELEASE_VERSION.tgz"
-curl -m 100 -s -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_API_TOKEN" -H "Content-Type:application/zip" --data-binary @"./$GITHUB_REPO-$RELEASE_VERSION.zip" "$UPLOAD_URL?name=$GITHUB_REPO-$RELEASE_VERSION.zip&label=$GITHUB_REPO-$RELEASE_VERSION.zip"
 
 # Delete the generated assets
-rm -Rf "$GITHUB_REPO-$RELEASE_VERSION.tgz" "datashare-plugin-site-alert-$RELEASE_VERSION.zip"
+rm -Rf "$GITHUB_REPO-$RELEASE_VERSION.tgz"
 printf "\n\nDONE"

@@ -1,7 +1,7 @@
 GITHUB_REPO="datashare-plugin-site-alert"
 
 clean:
-		rm -Rf ./dist ./tmp ${GITHUB_REPO}-*.zip ${GITHUB_REPO}-*.tgz
+		rm -Rf ./dist ${GITHUB_REPO}-*.tgz
 
 dist: clean
 		npm run build
