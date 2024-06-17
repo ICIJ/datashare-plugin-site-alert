@@ -3,21 +3,18 @@ workflows:
   version: 2
   test:
     jobs:
-      - test-6.0.0
-      - test-5.9.19
-      - test-5.9.17
-      - test-5.9.16
+      - test
 jobs:
-  test-6.0.0: &test-master
+  test:
     docker:
-      - image: circleci/node:buster-browsers
+      - image: cimg/node:18.19.1-browsers
         environment:
-          - "DATASHARE_VERSION=6.0.0"
+          - "DATASHARE_VERSION="
     steps:
       - checkout
       - run:
           name: Build Datashare package name
-          command: echo 'export DATASHARE_PACKAGE="datashare-dist_${DATASHARE_VERSION}_all.deb"'  >> $BASH_ENV
+          command: echo 'export DATASHARE_PACKAGE="datashare-${DATASHARE_VERSION}.deb"'  >> $BASH_ENV
       - run:
           name: Download Datashare for Debian
           command: wget "https://github.com/ICIJ/datashare-installer/releases/download/${DATASHARE_VERSION}/${DATASHARE_PACKAGE}"
@@ -38,21 +35,3 @@ jobs:
       - run:
           name: Run test
           command: yarn run test
-  test-5.9.19:
-    << : *test-master
-    docker:
-      - image: circleci/node:buster-browsers
-        environment:
-          - "DATASHARE_VERSION=5.9.19"
-  test-5.9.17:
-    << : *test-master
-    docker:
-      - image: circleci/node:buster-browsers
-        environment:
-          - "DATASHARE_VERSION=5.9.17"
-  test-5.9.16:
-    << : *test-master
-    docker:
-      - image: circleci/node:buster-browsers
-        environment:
-          - "DATASHARE_VERSION=5.9.16"
