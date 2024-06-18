@@ -18,9 +18,4 @@ module.exports = {
       }
     }
   }
-};
-
-
-// yarn build
-// cat "$(npm pack)" | tar zxvf - -C ./tmp
-// datashare --tcpListenPort 8008 --pluginsDir=$(pwd)/tmp
+}
