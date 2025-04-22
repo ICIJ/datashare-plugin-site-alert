@@ -37,6 +37,10 @@
         return this.castConfigToVariant('appAlertColor', defaultValue)
       },
       classList () {
+        // Duck-typing the new design by checking the exsitence of this.$core.stores
+        if (this.$core.stores) {
+          return [`alert-${this.variant}`, `text-${this.color}-emphasis`]
+        }
         return [`bg-${this.variant}`, `text-${this.color}`]
       }
     }
@@ -44,5 +48,5 @@
 </script>
 
 <template>
-  <div class="site-alert text-center p-2 width-100" :class="classList" v-html="message"></div>
+  <div class="site-alert alert text-center p-2 m-0 w-100" :class="classList" v-html="message"></div>
 </template>
